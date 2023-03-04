@@ -2,7 +2,8 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i[show]
 
   def index
-    flash.now[:notice] = "Yay!!!"
+    flash.now[:notice] = "Deu certo pae"
+    flash.now[:error] = "BOOOOOOOOOOO!!!"
     @posts = Post.all
   end
 
