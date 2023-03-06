@@ -2,8 +2,6 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i[show]
 
   def index
-    flash.now[:notice] = "Deu certo pae"
-    flash.now[:error] = "BOOOOOOOOOOO!!!"
     @posts = Post.all
   end
 
@@ -20,7 +18,7 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
 
       if @post.save
-        redirect_to post_url(@post), notice: "Post foi criado com sucesso"
+        redirect_to @post, notice: "Post foi criado com sucesso."
       else
         render :new
       end
@@ -28,10 +26,11 @@ class PostsController < ApplicationController
 
 
   private
-    def set_post
-      @post = Post.find(params[:id])
-    end
-    def post_params
-      params.require(:post).permit(:description)
-    end
+  def set_post
+    @post = Post.find(params[:id])
+  end
+
+  def post_params
+    params.require(:post).permit(:photo, :description)
+  end
 end
